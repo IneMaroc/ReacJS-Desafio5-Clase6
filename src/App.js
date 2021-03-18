@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import ItemListContainer from './componentes/catalogo/itemListContainer/ItemListContainer';
+import NavBar from './componentes/navbar/NavBar';
+
+
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    new Promise((todoBien, todoMal) => {
+    
+      setTimeout(() => {
+        todoBien(["Producto1", "Producto2", "Producto3", "Producto4"]);
+      }, 2000);
+    }).then((resultado) => setItems(resultado));
+    });
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <NavBar/>
+    <ItemListContainer items={items}/>
+      
     </div>
   );
 }
